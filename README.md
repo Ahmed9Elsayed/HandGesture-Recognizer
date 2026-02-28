@@ -4,7 +4,6 @@ A robust multi-class hand gesture recognition system built using landmark-based 
 The project focuses on preprocessing 3D hand landmark coordinates, handling class imbalance, and comparing multiple models to achieve high classification performance.
 
 ---
-
 ## 📌 Introduction
 
 This project implements a **Hand Gesture Recognition System** using 21 hand landmarks per sample (each with x, y, z coordinates).
@@ -32,16 +31,14 @@ After extensive experimentation, an **SVC model with polynomial kernel (C=30)** 
   - [Support Vector Classifier (SVC)](#-support-vector-classifier-svc)
   - [XGBoost](#-xgboost)
 - [Model Comparison](#-model-comparison)
+- [Real-Time Inference](#-real-time-inference)
+- [🎬Demo](#-Demo)
 - [Installation](#-installation)
 - [Usage](#-usage)
 - [Project Structure](#-project-structure)
-- [Dependencies](#-dependencies)
 - [Configuration](#-configuration)
-- [Examples](#-examples)
 - [Troubleshooting](#-troubleshooting)
 - [Future Improvements](#-future-improvements)
-- [Contributors](#-contributors)
-- [License](#-license)
 
 ---
 
@@ -57,6 +54,7 @@ The pipeline follows these steps:
 6. Train multiple models
 7. Compare performance metrics
 8. Select best-performing model
+9. Deploy for real-time inference
 
 ---
 
@@ -237,7 +235,68 @@ Performance (200 estimators):
 **SVC with Polynomial Kernel (C=30)**
 
 ---
+# 📹 Real-Time Inference
 
+A dedicated script is provided:
+
+```
+realtime_inference.py
+```
+
+## ✅ Before Running Real-Time Inference
+
+### 1️⃣ Save the Trained Model
+
+Run the model-saving cell in `ML_project.ipynb`:
+
+```python
+import joblib
+joblib.dump(best_model, "svc_poly_c30_model.joblib")
+```
+
+Ensure the saved file is in the project root directory:
+
+```
+svc_poly_c30_model.joblib
+```
+
+---
+
+## ▶ Run Real-Time Inference
+
+From project root:
+
+```bash
+python realtime_inference.py
+```
+
+### Controls
+
+- Press **q** to quit webcam window
+
+---
+
+## 🧠 Real-Time Pipeline
+
+1. Capture webcam frame
+2. Detect hand landmarks using MediaPipe
+3. Convert normalized landmarks → pixel coordinates
+4. Recenter & normalize landmarks
+5. Predict using trained SVC model
+6. Apply sliding window majority voting
+7. Display smoothed gesture label
+
+---
+# 🎬 Demo
+	 **Live Demo Available**
+
+> A real-time hand gesture recognition system powered by classical machine learning and MediaPipe.
+
+📹 **Demo Video:**  
+[▶ Watch Demo Video](demo/HandGestureInference.mp4)
+
+
+---
 # ⚙ Installation
 
 ```bash
@@ -250,10 +309,12 @@ pip install -r requirements.txt
 
 # ▶ Usage
 
+### Train Models
+
 1. Ensure dataset is placed correctly:
 
 ```
-data/hand_landmarks_data.csv
+dataset/hand_landmarks_data.csv
 ```
 
 2. Run notebook:
@@ -264,6 +325,13 @@ ML_project.ipynb
 
 3. Train models and evaluate performance.
 
+### Run Real-Time Inference
+
+```
+python realtime_inference.py
+```
+
+
 ---
 
 # 📁 Project Structure
@@ -272,9 +340,13 @@ ML_project.ipynb
 .
 ├── data/
 │   └── hand_landmarks_data.csv
+├── demo/
+│   └── demo_video.mp4
 ├── ML_project.ipynb
+├── realtime_inference.py
+├── svc_poly_c30_model.joblib
 ├── requirements.txt
-├── README.md
+└── README.md
 ```
 
 ---
@@ -305,7 +377,17 @@ Key configurable components:
 - Reduce model complexity
 - Use cross-validation
 - Tune hyperparameters
+### Model Not Found Error
+Make sure:
 
+```
+svc_poly_c30_model.joblib
+```
+
+exists in the root directory.
+### Unstable Predictions
+- Increase smoothing window (`PRED_WINDOW`)
+- Ensure lighting conditions are good
 ---
 
 # 🚀 Future Improvements
@@ -321,7 +403,10 @@ Key configurable components:
 
 # ⭐ Final Result
 
-Through systematic preprocessing, normalization, and model comparison,  
-the project achieved **98.60% accuracy** in multi-class hand gesture recognition using a classical ML pipeline.
+By combining geometric normalization with classical ML models, the project achieved:
 
-The key success factor was **proper geometric normalization** of landmark data before training.
+🎯 **98.60% accuracy**  
+📹 Real-time webcam inference  
+⚡ Lightweight and efficient pipeline  
+
+The most critical success factor was **proper landmark normalization before training and inference**.
