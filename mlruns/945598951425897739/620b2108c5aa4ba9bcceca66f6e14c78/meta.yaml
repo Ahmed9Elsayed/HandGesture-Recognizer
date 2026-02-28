@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/945598951425897739/620b2108c5aa4ba9bcceca66f6e14c78/artifacts
+end_time: 1772196123534
+entry_point_name: ''
+experiment_id: '945598951425897739'
+lifecycle_stage: active
+run_id: 620b2108c5aa4ba9bcceca66f6e14c78
+run_name: SVC_C100_Poly
+run_uuid: 620b2108c5aa4ba9bcceca66f6e14c78
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772196111478
+status: 3
+tags: []
+user_id: HOMOSI

@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1772310432278
+current_stage: None
+description: ''
+last_updated_timestamp: 1772310432278
+name: Staging
+run_id: 276ddd431c044a16a30b62bb49c92c16
+run_link: ''
+source: mlflow-artifacts:/945598951425897739/276ddd431c044a16a30b62bb49c92c16/artifacts/XGB_100est_eta0.1
+status: READY
+status_message: null
+storage_location: mlflow-artifacts:/945598951425897739/276ddd431c044a16a30b62bb49c92c16/artifacts/XGB_100est_eta0.1
+user_id: null
+version: 2

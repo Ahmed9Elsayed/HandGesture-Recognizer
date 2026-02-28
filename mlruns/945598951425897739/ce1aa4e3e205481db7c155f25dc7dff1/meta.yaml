@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/945598951425897739/ce1aa4e3e205481db7c155f25dc7dff1/artifacts
+deleted_time: 1772277955125
+end_time: 1772198465834
+entry_point_name: ''
+experiment_id: '945598951425897739'
+lifecycle_stage: deleted
+run_id: ce1aa4e3e205481db7c155f25dc7dff1
+run_name: XGB_400est_eta0.1
+run_uuid: ce1aa4e3e205481db7c155f25dc7dff1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772198451778
+status: 3
+tags: []
+user_id: HOMOSI

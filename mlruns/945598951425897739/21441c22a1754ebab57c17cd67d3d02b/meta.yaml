@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/945598951425897739/21441c22a1754ebab57c17cd67d3d02b/artifacts
+deleted_time: 1772194866402
+end_time: 1772181153349
+entry_point_name: ''
+experiment_id: '945598951425897739'
+lifecycle_stage: deleted
+run_id: 21441c22a1754ebab57c17cd67d3d02b
+run_name: SVC_default
+run_uuid: 21441c22a1754ebab57c17cd67d3d02b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772181132609
+status: 3
+tags: []
+user_id: HOMOSI

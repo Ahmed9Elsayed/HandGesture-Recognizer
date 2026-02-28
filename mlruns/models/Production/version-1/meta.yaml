@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1772310306903
+current_stage: None
+description: ''
+last_updated_timestamp: 1772310306903
+name: Production
+run_id: 620b2108c5aa4ba9bcceca66f6e14c78
+run_link: ''
+source: mlflow-artifacts:/945598951425897739/620b2108c5aa4ba9bcceca66f6e14c78/artifacts/SVC_C100_Poly
+status: READY
+status_message: null
+storage_location: mlflow-artifacts:/945598951425897739/620b2108c5aa4ba9bcceca66f6e14c78/artifacts/SVC_C100_Poly
+user_id: null
+version: 1

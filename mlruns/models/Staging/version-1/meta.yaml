@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1772310329395
+current_stage: None
+description: ''
+last_updated_timestamp: 1772310329395
+name: Staging
+run_id: bfe4fb96888844baa1d1c42236c3f840
+run_link: ''
+source: mlflow-artifacts:/945598951425897739/bfe4fb96888844baa1d1c42236c3f840/artifacts/RF_600est
+status: READY
+status_message: null
+storage_location: mlflow-artifacts:/945598951425897739/bfe4fb96888844baa1d1c42236c3f840/artifacts/RF_600est
+user_id: null
+version: 1
