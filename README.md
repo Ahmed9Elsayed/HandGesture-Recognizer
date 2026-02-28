@@ -1,7 +1,8 @@
 # ✋ Hand Gesture Recognition using Machine Learning
 
-A robust multi-class hand gesture recognition system built using landmark-based features and classical machine learning models.  
-The project focuses on preprocessing 3D hand landmark coordinates, handling class imbalance, and comparing multiple models to achieve high classification performance.
+A robust multi-class hand gesture recognition system built using landmark-based features, classical machine learning models and MediaPipe.  
+
+🧪 Includes MLflow-based experiment tracking (see `research` branch)
 
 ---
 ## 📌 Introduction
@@ -31,6 +32,7 @@ After extensive experimentation, an **SVC model with polynomial kernel (C=30)** 
   - [Support Vector Classifier (SVC)](#-support-vector-classifier-svc)
   - [XGBoost](#-xgboost)
 - [Model Comparison](#-model-comparison)
+- [Experiment Tracking & Model Registry (MLflow)](#-experiment-tracking--model-registry-mlflow)
 - [Real-Time Inference](#-real-time-inference)
 - [🎬Demo](#-Demo)
 - [Installation](#-installation)
@@ -235,6 +237,135 @@ Performance (200 estimators):
 **SVC with Polynomial Kernel (C=30)**
 
 ---
+
+# 📊 Experiment Tracking & Model Registry (MLflow)
+
+> ⚠️ **Note:** The MLflow-enabled version of this project exists on the  
+> **`research` branch**, not on `main`.
+
+To explore experiment tracking, run comparisons, and model registry:
+```
+git checkout research
+```
+
+---
+
+## 🔬 MLflow Experiment Tracking
+
+An advanced version of this project integrates **MLflow** for:
+
+- Logging model parameters, and artifacts
+- Logging models as pkl
+- Logging metrics (Accuracy, F1-score, Precision, Recall)
+- Tracking multiple runs
+- Comparing models within the same family
+- Registering best-performing models
+- Managing model stages (Staging / Production)
+
+All MLflow-related utilities are implemented in a separate script:
+
+```
+mlflow_logging.py   (contains logging + training helpers)
+```
+
+It includes:
+
+- MLflow logging wrappers
+- Model training functions for:
+  - SVC
+  - Random Forest
+  - XGBoost
+- GridSearch training functions 
+
+> ⚠ GridSearch functions are implemented but were not used because the available hardware could not support full hyperparameter search at scale.
+
+---
+
+## 📁 Logged Artifacts
+
+The `screenshots/` folder contains:
+
+- 📈 Logged runs overview
+- 📊 Model family comparison charts
+- 📦 Registered models view
+
+These provide full experiment traceability.
+
+---
+
+# 🏷 Model Registry & Stage Selection
+
+After evaluating multiple runs, models were registered in MLflow Model Registry with the following stages:
+
+| Model | Configuration | Stage | Reason |
+|-------|--------------|--------|--------|
+| **SVC** | Polynomial Kernel, C = 100 | 🟢 Production | Best overall performance |
+| Random Forest | 400 Estimators | 🟡 Staging (v1) | Slightly lower performance |
+| XGBoost | 100 Estimators | 🟡 Staging (v2) | Slightly lower performance |
+
+---
+
+## 🧠 Why These Stage Decisions?
+
+### 🟢 Production Model
+**SVC (Polynomial Kernel, C=100)**
+
+- Highest Accuracy
+- Highest F1-score
+- Most stable cross-run performance
+- Best confusion matrix distribution
+
+---
+
+### 🟡 Staging Models
+
+The following were kept in Staging:
+
+- Random Forest (400 estimators)
+- XGBoost (100 estimators)
+
+Reasons:
+
+- Performance was slightly lower than SVC
+- Still viable alternatives
+- Useful if production model needs fallback
+
+Staging models are:
+
+- Fully trained
+- Fully logged
+- Registered but not promoted
+
+---
+
+## 🔄 Model Lifecycle Strategy
+
+The selection strategy followed a standard ML lifecycle:
+
+1. Train and log multiple runs
+2. Compare metrics across model families
+3. Select best performing model
+4. Register top candidates
+5. Promote best model to Production
+6. Keep strong alternatives in Staging
+
+This ensures:
+
+- Reproducibility
+- Governance
+- Traceability
+- Clean model versioning
+
+---
+
+# 🏗 Research vs Main Branch
+
+| Branch | Purpose |
+|--------|----------|
+| `main` | Clean training + real-time inference version |
+| `research` | MLflow tracking + experiment management |
+
+---
 # 📹 Real-Time Inference
 
 A dedicated script is provided:
@@ -293,7 +424,7 @@ python realtime_inference.py
 > A real-time hand gesture recognition system powered by classical machine learning and MediaPipe.
 
 📹 **Demo Video:**  
-[▶ Watch Demo Video](demo/HandGestureInference.mp4)
+[Live Demo](https://drive.google.com/file/d/1_dC07L7BPrWV199Ipt9H3llktdBW8aAS/view?usp=drive_link)
 
 
 ---
@@ -340,8 +471,6 @@ python realtime_inference.py
 .
 ├── data/
 │   └── hand_landmarks_data.csv
-├── demo/
-│   └── demo_video.mp4
 ├── ML_project.ipynb
 ├── realtime_inference.py
 ├── svc_poly_c30_model.joblib

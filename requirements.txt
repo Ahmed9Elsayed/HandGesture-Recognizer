@@ -1,0 +1,11 @@
+numpy>=1.23
+pandas>=1.5
+matplotlib>=3.6
+seaborn>=0.12
+scikit-learn>=1.2
+xgboost>=1.7
+joblib>=1.2
+opencv-python>=4.7
+mediapipe>=0.10
+cloudpickle>=2.2
+mlflow>=2.0
